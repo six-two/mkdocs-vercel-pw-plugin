@@ -1,0 +1,12 @@
+site_name: Vercel PW auth
+plugins:
+- search
+- vercel_pw:
+    cookie_name: JSESSIONID
+    password: Monkey123!
+    restrict_to_domain: mkdocs-vercel-pw-plugin.vercel.app
+    vercel_json_path: ../vercel.json
+
+nav:
+- index.md
+- "Logout": logout.html

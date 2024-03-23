@@ -1,0 +1,33 @@
+{
+    "github": {
+        "silent": true
+    },
+    "buildCommand": "bash -x build.sh",
+    "outputDirectory": "public",
+    "routes": [
+        {
+            "src": "/.*",
+            "missing": [
+                {
+                    "type": "header",
+                    "key": "host",
+                    "value": "mkdocs-vercel-pw-plugin.vercel.app"
+                }
+            ],
+            "dest": "/deployment_forbidden.html",
+            "status": 403
+        },
+        {
+            "src": "/.*",
+            "missing": [
+                {
+                    "type": "header",
+                    "key": "cookie",
+                    "value": ".*JSESSIONID=TW9ua2V5MTIzIQ.*"
+                }
+            ],
+            "dest": "/deployment_not_found.html",
+            "status": 404
+        }
+    ]
+}

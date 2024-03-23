@@ -1,0 +1,2 @@
+include README.md
+include src/mkdocs_vercel_pw_plugin/*.html
