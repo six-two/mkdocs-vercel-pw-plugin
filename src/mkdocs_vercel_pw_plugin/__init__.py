@@ -47,6 +47,7 @@ class MyConfig(base.Config):
 
 
 class VercelJsonModifierPlugin(BasePlugin[MyConfig]):
+    supports_multiple_instances = True
 
     def on_config(self, config):
         path = os.path.join(config['docs_dir'], self.config['vercel_json_path'])

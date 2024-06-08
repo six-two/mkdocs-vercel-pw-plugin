@@ -6,6 +6,12 @@ plugins:
     password: Monkey123!
     restrict_to_domain: mkdocs-vercel-pw-plugin.vercel.app
     vercel_json_path: ../vercel.json
+# # Uncomment the following to test the multi instance configuration
+# - vercel_pw:
+#     cookie_name: test
+#     password: test
+#     restrict_to_domain: test.vercel.app
+#     vercel_json_path: ../vercel2.json
 
 nav:
 - index.md

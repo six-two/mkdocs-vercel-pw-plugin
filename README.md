@@ -12,8 +12,8 @@ You have created a `vercel.json` file and it does not have any existing `routes`
 ## Usage
 
 Install the package via pip:
-```
-pip install @TODO
+```bash
+pip install mkdocs-vercel-pw-plugin
 ```
 
 Then add the plugin to your `mkdocs.yml`:
@@ -36,4 +36,4 @@ This is because the `vercel.json` is only updated after a build is performed.
 
 By default the "login" page mimics the Vercel deployment not found page.
 This serves as a small security by obscurity measure.
-Of course you can also provide your own `docs/deployment_not_found.html` that instead shows a login formular or something like that.
+Of course you can also provide your own `docs/deployment_not_found.html` that instead shows a login form or something like that.
