@@ -37,3 +37,9 @@ This is because the `vercel.json` is only updated after a build is performed.
 By default the "login" page mimics the Vercel deployment not found page.
 This serves as a small security by obscurity measure.
 Of course you can also provide your own `docs/deployment_not_found.html` that instead shows a login form or something like that.
+
+## Notable changes
+
+### Version 0.0.2
+
+- Hide the `Plugin 'vercel_pw' was specified multiple times` warning
