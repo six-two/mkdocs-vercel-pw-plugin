@@ -301,7 +301,7 @@ footer svg {
         let new_id = old_id;
 
         if (location.hash && location.hash.length > 1) {
-            new_id = unicode2hex(location.hash.slice(1));
+            new_id = unicode2hex(decodeURIComponent(location.hash.slice(1)));
         }
         
         if (!new_id) {
