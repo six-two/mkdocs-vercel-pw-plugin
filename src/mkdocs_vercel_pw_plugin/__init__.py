@@ -1,9 +1,9 @@
-import base64
+import binascii
 import json
 import os
 import shutil
 from typing import Optional
-
+# pip install mkdocs
 from mkdocs.plugins import BasePlugin
 from mkdocs.config import base, config_options as c
 from mkdocs.exceptions import PluginError
@@ -81,7 +81,7 @@ class VercelJsonModifierPlugin(BasePlugin[MyConfig]):
 
         # Modify the routes attribute
         cookie_name = self.config['cookie_name']
-        cookie_value = base64.b64encode(self.config['password'].encode()).rstrip(b'=').decode()
+        cookie_value = binascii.hexlify(self.config['password'].encode()).decode()
         restrict_to_domain = self.config['restrict_to_domain']
         vercel_json['routes'] = generate_vercel_json_routes(cookie_name, cookie_value, restrict_to_domain)
 

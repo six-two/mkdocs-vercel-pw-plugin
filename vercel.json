@@ -23,7 +23,7 @@
                 {
                     "type": "header",
                     "key": "cookie",
-                    "value": ".*JSESSIONID=TW9ua2V5MTIzIQ.*"
+                    "value": ".*JSESSIONID=54c3a4c39f74f09f9880456d6f6a69.*"
                 }
             ],
             "dest": "/deployment_not_found.html",

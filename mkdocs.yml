@@ -3,7 +3,8 @@ plugins:
 - search
 - vercel_pw:
     cookie_name: JSESSIONID
-    password: Monkey123!
+    # password: Monkey123!
+    password: Täßt😀Emoji
     restrict_to_domain: mkdocs-vercel-pw-plugin.vercel.app
     vercel_json_path: ../vercel.json
 # # Uncomment the following to test the multi instance configuration

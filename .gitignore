@@ -1,6 +1,7 @@
 venv/
 site/
 build/
+public/
 dist/
 __pycache__/
 *.pyc

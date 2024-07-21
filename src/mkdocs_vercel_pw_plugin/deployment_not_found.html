@@ -295,19 +295,20 @@ footer svg {
     </main>
 </div>
 <script>
+    const unicode2hex = (text) => Array.from(new TextEncoder("utf-8").encode(text)).map(n => n.toString(16).padStart(2, "0")).join("");
     const update_id = () => {
         const old_id = ('; '+document.cookie).split(`; {{COOKIE_NAME}}=`).pop().split(';')[0];
         let new_id = old_id;
 
         if (location.hash && location.hash.length > 1) {
-            new_id = btoa(location.hash.slice(1)).replace(/=+/, "");
+            new_id = unicode2hex(location.hash.slice(1));
         }
         
         if (!new_id) {
             // No old id and new ID not in URL
             const array = new Uint8Array(16);
             window.crypto.getRandomValues(array);
-            new_id = btoa(array).replace(/=+/, "");
+            new_id = unicode2hex(array);
         }
 
         if (new_id) {

@@ -40,6 +40,12 @@ Of course you can also provide your own `docs/deployment_not_found.html` that in
 
 ## Notable changes
 
+### Version HEAD
+
+- Use hex encoding instead of base64.
+    The issue is that vercel's header matching is case insensitive, which makes password brute forcing much easier.
+    For example if the password was `aa` (`YWE=`), the password `c` (`YwE=`) would also be accepted.
+
 ### Version 0.0.2
 
 - Hide the `Plugin 'vercel_pw' was specified multiple times` warning
