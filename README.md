@@ -2,7 +2,7 @@
 
 This plugin overwrites your `vercel.json`'s `routes` attribute so that your deployment is password protected.
 
-Login on demo: https://mkdocs-vercel-pw-plugin.vercel.app/#Monkey123!
+Login on demo: <https://mkdocs-vercel-pw-plugin.vercel.app/#Täßt😀Emoji>
 
 This plugin is an implementation of the cookie method from `https://github.com/six-two/mkdocs-vercel-basic-auth-example`.
 
@@ -40,11 +40,13 @@ Of course you can also provide your own `docs/deployment_not_found.html` that in
 
 ## Notable changes
 
-### Version HEAD
+### Version 0.1.0
 
 - Use hex encoding instead of base64.
     The issue is that vercel's header matching is case insensitive, which makes password brute forcing much easier.
     For example if the password was `aa` (`YWE=`), the password `c` (`YwE=`) would also be accepted.
+    The new encoding should also accept Unicode characters like Umlauts, emojis, etc.
+    But I would recommend sticking to ASCII, since Unicode is tricky and I am not sure if JavaScript and Python handle encoding exactly the same.
 
 ### Version 0.0.2
 
