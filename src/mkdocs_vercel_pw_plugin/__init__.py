@@ -4,9 +4,35 @@ import os
 import shutil
 from typing import Optional
 # pip install mkdocs
-from mkdocs.plugins import BasePlugin
+from mkdocs.plugins import BasePlugin, get_plugin_logger
 from mkdocs.config import base, config_options as c
 from mkdocs.exceptions import PluginError
+
+TERRIBLE_PASSWORDS = [
+    # Source: https://en.wikipedia.org/wiki/List_of_the_most_common_passwords
+    "123456",
+	"123456789",
+ 	"qwerty",
+ 	"password",
+ 	"12345678",
+ 	"111111",
+ 	"123123",
+ 	"1234567890",
+ 	"1234567",
+ 	"qwerty123",
+ 	"000000",
+ 	"1q2w3e",
+ 	"aa12345678",
+ 	"abc123",
+ 	"password1",
+ 	"qwertyuiop",
+ 	"123321",
+ 	"password123"
+    # Trivial passwords
+    "admin",
+    "vercel",
+    "mkdocs"
+]
 
 
 def generate_vercel_json_routes(cookie_name: str, cookie_value: str, restrict_to_domain: Optional[str] = None) -> list[dict]:
@@ -53,6 +79,14 @@ class VercelJsonModifierPlugin(BasePlugin[MyConfig]):
         path = os.path.join(config['docs_dir'], self.config['vercel_json_path'])
         if not os.path.exists(path):
             raise PluginError(f"File referenced by 'vercel_json_path' does not exist: {path}")
+        
+        # Do sanity checking on the password
+        if len(self.config.password) < 6:
+            raise PluginError(f"Password needs to be at least 6 characters long")
+        if self.config.password.lower() in TERRIBLE_PASSWORDS:
+            raise PluginError(f"That is a really terrible password, because it is very common. If I had to guess it, it would take only a couple of seconds. Please generate a strong and random password.")
+        if self.config.password.startswith("ENV "):
+            get_plugin_logger(__name__).warning("Your password starts with 'ENV '. Did you mean '!ENV ', which is used to expand an environment variable?")
 
         return config
 

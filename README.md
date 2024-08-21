@@ -19,10 +19,11 @@ pip install mkdocs-vercel-pw-plugin
 Then add the plugin to your `mkdocs.yml`:
 ```yaml
 plugins:
+- search
 - vercel_pw:
     cookie_name: JSESSIONID
-    password: Monkey123!
-    restrict_to_domain: mkdocs-pw-protection.vercel.app
+    password: Täßt😀Emoji
+    restrict_to_domain: mkdocs-vercel-pw-plugin.vercel.app
     vercel_json_path: ../vercel.json
 ```
 
@@ -32,6 +33,30 @@ You can link to `/logout.html`.
 You need to run a successful build (`mkdocs build` or `mkdocs serve`) after changing the config before pushing your changes to Vercel.
 This is because the `vercel.json` is only updated after a build is performed.
 
+### Password in environment variable
+
+If you want to obscure the password a little bit, you can use an [environment variable](https://www.mkdocs.org/user-guide/configuration/#environment-variables) instead of the plain password in the `mkdocs.yml`:
+
+```yaml
+plugins:
+- search
+- vercel_pw:
+    cookie_name: JSESSIONID
+    password: MKDOCS_VERCEL_PW_DEMO_APP
+    restrict_to_domain: mkdocs-vercel-pw-plugin.vercel.app
+    vercel_json_path: ../vercel.json
+```
+
+You can the set and export the environment variable or pass it directly to mkdocs:
+```bash
+MKDOCS_VERCEL_PW_DEMO_APP=Täßt😀Emoji mkdocs serve
+```
+
+In this case, anyone with access to the source code can still access your site using the value in the `vercel.json` file, and they can also hex-decode that value to get your original password.
+If you use an environment variable, you also need to set it in the CI/CD pipeline, otherwise this plugin will abort the build, since the missing `password` parameter is not set.
+
+But I am not sure if you need the same password there, since I would guess that the `vercel.json` file is fully read and processed, before its values like `buildCommand` are executed. Thus any modifications that the plugin does should theoretically not affect the deployed site. But I havent tested that.
+
 ## Customization
 
 By default the "login" page mimics the Vercel deployment not found page.
@@ -39,6 +64,11 @@ This serves as a small security by obscurity measure.
 Of course you can also provide your own `docs/deployment_not_found.html` that instead shows a login form or something like that.
 
 ## Notable changes
+
+### Head
+
+- Perform basic sanity checks on password.
+
 
 ### Version 0.1.0
 
