@@ -42,7 +42,7 @@ plugins:
 - search
 - vercel_pw:
     cookie_name: JSESSIONID
-    password: MKDOCS_VERCEL_PW_DEMO_APP
+    password: !ENV MKDOCS_VERCEL_PW_DEMO_APP
     restrict_to_domain: mkdocs-vercel-pw-plugin.vercel.app
     vercel_json_path: ../vercel.json
 ```
