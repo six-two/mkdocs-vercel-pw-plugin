@@ -1,15 +1,27 @@
-# vercel-pw-protection
+# MkDocs Vercel Password Protection Plugin
 
-This plugin overwrites your `vercel.json`'s `routes` attribute so that your deployment is password protected.
+This plugin allows you to password protect your site if it is deployed by [Vercel](https://vercel.com).
+It works by overwriting your `vercel.json`'s `routes` attribute so that your deployment can only be accessed with the correct cookie.
+If users without the cookie try to visit your site they are shown a `Deployment not found` decoy page by default.
+By visiting the decoy page with the password in the URL hash, you can set the correct cookie and access the site.
 
-Login on demo: <https://mkdocs-vercel-pw-plugin.vercel.app/#Täßt😀Emoji>
+More detailed information can be found in my [mkdocs-vercel-basic-auth-example](https://github.com/six-two/mkdocs-vercel-basic-auth-example) repository in the `cookie` and `cookie-killswitch` folders.
 
-This plugin is an implementation of the cookie method from `https://github.com/six-two/mkdocs-vercel-basic-auth-example`.
+## Demo
+
+This plugin has a corresponding demo page, which is hosted by Vercel.
+If you try to access it normally, it should not work and you should see `Deployment not found`: <https://mkdocs-vercel-pw-plugin.vercel.app/>
+
+If you access it with the correct password, it should be accessible: <https://mkdocs-vercel-pw-plugin.vercel.app/#Täßt😀Emoji>
+Your credentials are stored, so if you visit <https://mkdocs-vercel-pw-plugin.vercel.app/> afterwards you should still be logged in.
+
+You will stay logged in until the cookie expires (after about a year), you delete your cookies or you log out.
+After any of these cases <https://mkdocs-vercel-pw-plugin.vercel.app/> should show you the default `Deployment not found` page again.
+
+## Usage
 
 Prerequesites:
 You have created a `vercel.json` file and it does not have any existing `routes`.
-
-## Usage
 
 Install the package via pip:
 ```bash
